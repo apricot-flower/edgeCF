@@ -11,5 +11,6 @@ IOT边缘计算框架
 # test 测试目录
 
 # 日志
+## 使用https://github.com/kala13x/slog/blob/master/src/slog.h#L187
 
-https://github.com/kala13x/slog/blob/master/src/slog.h#L187
+

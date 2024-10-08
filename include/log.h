@@ -7,11 +7,11 @@
 
 #include <stdint.h>
 
-#define SLOG_FLAGS_ALL          255
-#define SLOG_NAME_MAX           256
-#define SLOG_PATH_MAX           2048
+#define LOG_FLAGS_ALL          255
+#define LOG_NAME_MAX           256
+#define LOG_PATH_MAX           2048
 #define LOG_NAME_DEFAULT       "edge_log"
-#define SLOG_FLAGS_CHECK(c, f) (((c) & (f)) == (f))
+#define LOG_FLAGS_CHECK(c, f) (((c) & (f)) == (f))
 
 
 #define LOG_COLOR_NORMAL       "\x1B[0m"
@@ -40,11 +40,18 @@
 
 #define LOG_EMPTY              ""
 
+#define LOG_INDENT             "       "
 
-#define log_info(...) log_display(SLOG_INFO, 1, __VA_ARGS__)
-#define log_warn(...) log_display(SLOG_WARN, 1, __VA_ARGS__)
-#define log_debug(...) log_display(SLOG_DEBUG, 1, __VA_ARGS__)
-#define log_error(...) log_display(SLOG_ERROR, 1, __VA_ARGS__)
+#define LOG_SPACE              " "
+
+#define LOG_NEWLINE            "\n"
+
+
+
+#define log_info(...) log_display(LOG_INFO, 1, __VA_ARGS__)
+#define log_warn(...) log_display(LOG_WARN, 1, __VA_ARGS__)
+#define log_debug(...) log_display(LOG_DEBUG, 1, __VA_ARGS__)
+#define log_error(...) log_display(LOG_ERROR, 1, __VA_ARGS__)
 
 
 //定义日志标志
@@ -97,9 +104,9 @@ typedef struct {
     uint8_t nRotate;//如果设置为非零值，启用日志轮转功能。这意味着当达到一定的大小或条件时，旧的日志文件会被归档，并创建新的日志文件继续记录
     uint8_t nFlush;//如果设置为非零值，表示在每次屏幕日志输出后立即刷新stdout，确保日志信息及时可见
     uint16_t nFlags;//允许的日志级别标志。通过位掩码来控制哪些级别的日志信息会被记录，例如DEBUG、INFO、WARNING、ERROR等
-    char sSeparator[SLOG_NAME_MAX];//分隔符字符串，用于分隔日志条目中的不同部分，如日期时间、线程ID和实际的日志信息等
-    char sFileName[SLOG_NAME_MAX];//输出日志文件的名称
-    char sFilePath[SLOG_PATH_MAX];//输出日志文件的路径
+    char sSeparator[LOG_NAME_MAX];//分隔符字符串，用于分隔日志条目中的不同部分，如日期时间、线程ID和实际的日志信息等
+    char sFileName[LOG_NAME_MAX];//输出日志文件的名称
+    char sFilePath[LOG_PATH_MAX];//输出日志文件的路径
 
 } log_config_t;
 
