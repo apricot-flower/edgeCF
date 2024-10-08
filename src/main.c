@@ -2,20 +2,29 @@
 // Created by apricot on 2024/10/2.
 //
 #include <stdio.h>
-#include "../include/log.h"
+#include "../include/elog.h"
+#include "../include/task.h"
 
 
 
 void logInit() {
-    int nEnabledLevels = LOG_INFO | LOG_ERROR;
-    nEnabledLevels |= LOG_WARN | LOG_FATAL;
-    log_init("logfile", nEnabledLevels, 1);
+    log_init("edge_logs", 7);
+}
+
+void task_test() {
+    printf("task_test\n");
+}
+
+void add_task() {
+    addTasks("task_test", 60 * 1000, 0, task_test);
 }
 
 int main(void) {
     logInit();
-    log_warn("这是一条warn日志");
-    log_info("这是一条info日志");
-    log_debug("这是一条debug日志");
+    log_info("111111111 %s", "tuluo");
+    log_debug("debug %s", "tuluo");
+    log_warn("warn %s", "tuluo");
+    log_error("error %s", "tuluo");
+    add_task();
     return 0;
 }
